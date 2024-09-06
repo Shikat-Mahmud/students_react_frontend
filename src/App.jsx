@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Students from './components/Students';
 import { Route, Routes } from 'react-router-dom';
 import StudentDetails from './components/StudentDetails';
+import AddStudent from './components/AddStudent';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Students/>} />
         <Route path='/details/:id' element={<StudentDetails/>} />
+        <Route path='/add_student' element={<AddStudent/>} />
       </Routes>
     </>
   )

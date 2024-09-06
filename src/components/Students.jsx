@@ -23,7 +23,7 @@ const Students = () => {
                 <h3>
                     All Students
                 </h3>
-                <a href='/' className='btn btn-primary d-flex align-items-center'>
+                <a href='/add_student' className='btn btn-primary d-flex align-items-center'>
                     <FaPlus className='me-2' /> Add Students
                 </a>
             </div>
