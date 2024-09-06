@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Students from './components/Students';
 import { Route, Routes } from 'react-router-dom';
+import StudentDetails from './components/StudentDetails';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       </div>
       <Routes>
         <Route path='/' element={<Students/>} />
+        <Route path='/details/:id' element={<StudentDetails/>} />
       </Routes>
     </>
   )

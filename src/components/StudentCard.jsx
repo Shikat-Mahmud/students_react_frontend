@@ -15,9 +15,7 @@ const StudentCard = ({ student }) => {
                     {student.phone}
                 </span>
                 <div className="mt-2">
-                    <button type='button' className='btn btn-dark'>
-                        Details
-                    </button>
+                    <a href={`/details/${student.id}`} className='btn btn-dark'>Details</a>
                 </div>
             </div>
         </div>
