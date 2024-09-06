@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { IoArrowBackOutline } from 'react-icons/io5';
 import { useParams } from 'react-router-dom'
 
 const StudentDetails = () => {
@@ -21,7 +22,9 @@ const StudentDetails = () => {
                 <h3>
                     Student Details
                 </h3>
-                <a href='/' className='btn btn-primary'>All Students</a>
+                <a href='/' className='btn btn-primary d-flex align-items-center'>
+                    <IoArrowBackOutline className='me-2' /> All Students
+                </a>
             </div>
             <div className="d-flex justify-content-center">
                 <div className="mt-3 d-flex flex-column text-align-center rounded" style={{ width: '100%', maxWidth: '800px', backgroundColor: '#e5e5e5', padding: '40px' }}>
@@ -46,7 +49,7 @@ const StudentDetails = () => {
                     </div>
 
                     <div className="mt-3">
-                        <h3 style={{marginBottom: '20px'}} className='text-center'>{student.name}</h3>
+                        <h3 style={{ marginBottom: '20px' }} className='text-center'>{student.name}</h3>
                         <span>Email: <strong>{student.email}</strong></span> <br />
                         <span>Phone: <strong>{student.phone}</strong></span> <br />
                         <span>Address: <strong>{student.address}</strong></span>
