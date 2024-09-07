@@ -1,4 +1,7 @@
 import React from 'react'
+import { BiSolidUserDetail } from 'react-icons/bi'
+import { FaEdit } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
 
 const StudentCard = ({ student }) => {
     return (
@@ -14,8 +17,12 @@ const StudentCard = ({ student }) => {
                 <span>
                     {student.phone}
                 </span>
-                <div className="mt-2">
-                    <a href={`/details/${student.id}`} className='btn btn-dark'>Details</a>
+                <div className="mt-2 d-flex justify-content-between">
+                    <a href={`/details/${student.id}`} className='btn btn-info d-flex align-items-center'><BiSolidUserDetail /></a>
+                    <div className="d-flex">
+                        <a href={`/edit_student/${student.id}`} className='btn btn-success d-flex align-items-center'><FaEdit /></a>
+                        <a href={`/details/${student.id}`} className='btn btn-danger d-flex align-items-center ms-2'><MdDelete /></a>
+                    </div>
                 </div>
             </div>
         </div>

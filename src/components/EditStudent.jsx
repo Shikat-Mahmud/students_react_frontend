@@ -1,29 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { IoArrowBackOutline } from 'react-icons/io5'
-import { useNavigate } from 'react-router-dom';
+import { IoArrowBackOutline } from 'react-icons/io5';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-
-const AddStudent = () => {
+const EditStudent = () => {
     const navigate = useNavigate();
+    const param = useParams();
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
+
+    const [status, setStatus] = useState('active');    
+
+    const fetchStudent = async () => {
+        const res = await fetch("http://127.0.0.1:8000/api/student/"+param.id);
+        const result = await res.json();
+        reset(result.data);
+        setStatus(result.data.status);
+    }
+
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value);
+    }
 
     const studentFormSubmit = async (data) => {
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('email', data.email);
         formData.append('phone', data.phone);
-        formData.append('address', data.address);
+        formData.append('status', status);
+        formData.append('address', data.address);        
 
         try {
-            const res = await fetch("http://127.0.0.1:8000/api/create_student", {
+            const res = await fetch("http://127.0.0.1:8000/api/edit_student/"+param.id, {
                 method: "POST",
                 body: formData
             });
@@ -36,7 +50,7 @@ const AddStudent = () => {
 
                 // Adjust the condition based on actual response structure
                 if (response.status === true || response.status === 'true') {
-                    toast.success("Student added successfully.");
+                    toast.success("Student updated successfully.");
                     navigate('/');
                 } else {
                     // Handle errors if any
@@ -67,11 +81,15 @@ const AddStudent = () => {
         }
     }
 
+    useEffect(() =>{
+        fetchStudent();
+    },[]);
+
     return (
         <div className="container">
             <div className="m-3 d-flex justify-content-between">
                 <h3>
-                    Add Student
+                    Edit Student
                 </h3>
                 <a href='/' className='btn btn-primary d-flex align-items-center'>
                     <IoArrowBackOutline className='me-2' /> All Students
@@ -95,6 +113,14 @@ const AddStudent = () => {
                     </div>
 
                     <div className="mb-3">
+                        <label htmlFor="status" className="form-label">Status</label>
+                        <select className="form-select" id="status" aria-label="Status" value={status} onChange={handleStatusChange}>
+                            <option value={'active'}>Active</option>
+                            <option value={'inactive'}>Inactive</option>
+                        </select>
+                    </div>
+
+                    <div className="mb-3">
                         <label htmlFor="address" className="form-label">Address:</label>
                         <textarea {...register('address')} className="form-control" id="address" rows="3" placeholder="Enter your address"></textarea>
                     </div>
@@ -107,4 +133,4 @@ const AddStudent = () => {
     )
 }
 
-export default AddStudent
+export default EditStudent

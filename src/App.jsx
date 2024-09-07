@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import StudentDetails from './components/StudentDetails';
 import AddStudent from './components/AddStudent';
 import { ToastContainer } from 'react-toastify';
+import EditStudent from './components/EditStudent';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Students/>} />
         <Route path='/details/:id' element={<StudentDetails/>} />
         <Route path='/add_student' element={<AddStudent/>} />
+        <Route path='/edit_student/:id' element={<EditStudent/>} />
       </Routes>
       <ToastContainer />
     </>
