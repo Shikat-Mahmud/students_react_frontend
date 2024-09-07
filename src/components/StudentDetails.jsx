@@ -39,7 +39,7 @@ const StudentDetails = () => {
                                     height: '20px',
                                     width: '20px',
                                     borderRadius: '50%',
-                                    backgroundColor: 'green',
+                                    backgroundColor: (student.status === 'active' ? 'green' : 'red'),
                                     bottom: '20px',
                                     right: '20px',
                                     border: '3px solid white',
