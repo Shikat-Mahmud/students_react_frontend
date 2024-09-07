@@ -31,7 +31,7 @@ const Students = () => {
                 {
                     students && students.length > 0 ? (
                         students.map((student) => (
-                            <StudentCard key={student.id} student={student} />
+                            <StudentCard key={student.id} student={student} students={students} setStudents={setStudents} />
                         ))
                     ) : (
                         <p className='d-flex justify-content-center align-item-center'>Students not found.</p>
