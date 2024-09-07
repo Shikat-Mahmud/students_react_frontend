@@ -29,9 +29,13 @@ const Students = () => {
             </div>
             <div className="row">
                 {
-                    students && students.map((student) => (
-                        <StudentCard key={student.id} student={student} />
-                    ))
+                    students && students.length > 0 ? (
+                        students.map((student) => (
+                            <StudentCard key={student.id} student={student} />
+                        ))
+                    ) : (
+                        <p className='d-flex justify-content-center align-item-center'>Students not found.</p>
+                    )
                 }
             </div>
         </div>
